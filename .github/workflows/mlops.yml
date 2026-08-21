@@ -130,12 +130,13 @@ jobs:
     steps:
 
       - name: SSH deploy to VM
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VM_HOST }}
-          username: ${{ secrets.VM_USER }}
-          key: ${{ secrets.VM_SSH_KEY }}
-          script: |
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VM_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} "
             sudo systemctl restart mlops-serve
             sleep 5
-            curl -sf http://localhost:8000/health && echo "Health check passed." || exit 1
+            curl -sf http://localhost:8000/health && echo 'Health check passed.' || exit 1
+          "
+
