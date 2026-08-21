@@ -62,6 +62,7 @@ jobs:
       - name: Authenticate to Cloud Storage
         run: |
           echo '${{ secrets.CLOUD_CREDENTIALS }}' > /tmp/sa-key.json
+          echo '${{ secrets.CLOUD_CREDENTIALS }}' > sa-key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa-key.json" >> $GITHUB_ENV
 
       - name: Pull data with DVC
@@ -77,12 +78,15 @@ jobs:
           echo "accuracy=$ACC" >> $GITHUB_OUTPUT
 
       - name: Upload model to Cloud Storage
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa-key.json
+          BUCKET_NAME: ${{ secrets.CLOUD_BUCKET }}
         run: |
           python - <<'EOF'
           import os
           from google.cloud import storage
 
-          bucket_name = "${{ secrets.CLOUD_BUCKET }}"
+          bucket_name = os.environ["BUCKET_NAME"]
           client = storage.Client()
           bucket = client.bucket(bucket_name)
           blob = bucket.blob("models/latest/model.pkl")
