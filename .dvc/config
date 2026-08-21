@@ -1,0 +1,5 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = gs://mlops-wine-2a202601591/dvcstore
+    credentialpath = ../sa-key.json
