@@ -89,11 +89,12 @@ jobs:
           print(f"Uploaded models/model.pkl to gs://{bucket_name}/models/latest/model.pkl")
           EOF
 
-      - name: Save metrics as artifact
+      - name: Save metrics and performance report as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: metrics
-          path: outputs/metrics.json
+          name: performance-reports
+          path: outputs/
+
 
 
   # ---------------------------------------------------------------------------
