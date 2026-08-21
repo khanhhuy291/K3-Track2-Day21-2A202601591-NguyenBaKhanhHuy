@@ -68,3 +68,16 @@ Qua quá trình huấn luyện và theo dõi trên MLflow, các mô hình và b�
   {"prediction":0,"label":"thap"}
   ```
 - **Trạng thái GitHub Actions CI/CD**: 4/4 Jobs (`Unit Test`, `Train`, `Eval`, `Deploy`) đều hoàn thành màu xanh lá tích ✔️.
+
+---
+
+## 6. HÌNH ẢNH MINH CHỨNG (SCREENSHOTS)
+
+| Hạng mục | Hình ảnh minh chứng |
+|---|---|
+| **1. MLflow UI (Bước 1)** | ![MLflow UI](screenshots/1_mlflow_ui.png) |
+| **2. Eval Gate Blocked (Bước 2)** | ![Eval Gate Blocked](screenshots/2_eval_gate_blocked.png) |
+| **3. CI/CD Full Green Pipeline (Bước 3)** | ![CI/CD 4 Jobs Green](screenshots/3_cicd_full_green.png) |
+| **4. Live API Test Terminal** | ![API Test](screenshots/4_api_curl_test.png) |
+| **5. Google Cloud Storage Bucket** | ![GCS Bucket](screenshots/5_gcs_bucket.png) |
+
